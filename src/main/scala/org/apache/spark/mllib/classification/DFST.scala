@@ -7,8 +7,8 @@ package org.apache.spark.mllib.classification
 
 //Import libraries needed
 // Need to import RDD, which is not included in the default shell scala
-import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.rdd.RDD
 
 /* How to store data contain values or characteristics thereof and the
 corresponding label.*/
@@ -18,15 +18,14 @@ import org.apache.spark.mllib.regression.LabeledPoint
 /* Library that allows the creation of dense vectors (used in the labeled
 points) and sparse vectors.*/
 
-import org.apache.spark.mllib.linalg.Vectors
-
 import java.io._
 
+import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.tree.RandomForest
 
 
-class FastShapelet(train_file_name: String, min_len: Int, max_len: Int, step: Int, Num_partitions: Int, seed: Int,
-                   tree_file_name: String, time_file_name: String, R: Int, top_k: Int, Classificator: Int, shapelet_file_name: String, test_file_name: String, model_file_name: String) extends Serializable {
+class DFST(train_file_name: String, min_len: Int, max_len: Int, step: Int, Num_partitions: Int, seed: Int,
+           tree_file_name: String, time_file_name: String, R: Int, top_k: Int, Classificator: Int, shapelet_file_name: String, test_file_name: String, model_file_name: String) extends Serializable {
 
 
   /** It shows the possible known bugs own class to consider, when they occur.
@@ -1372,6 +1371,7 @@ class FastShapelet(train_file_name: String, min_len: Int, max_len: Int, step: In
 
   def main(train_file_name: String, min_len: Int, max_len: Int, step: Int, Num_partitions_in: Int, seed: Int, tree_file_name: String,
            time_file_name: String, R: Int, top_k: Int, Classificator: Int, shapelet_file_name: String, test_file_name: String, model_file_name: String) {
+
     val conf = new SparkConf().set("spark.default.parallelism", Num_partitions_in.toString)
     val sc = new SparkContext(conf)
     sc.setLogLevel("ERROR")
@@ -1696,9 +1696,9 @@ class FastShapelet(train_file_name: String, min_len: Int, max_len: Int, step: In
   }
 }
 
-object FastShapelet extends Serializable {
+object DFST extends Serializable {
   def run(train_file_name: String, min_len: Int, max_len: Int, step: Int, Num_partitions: Int, seed: Int, tree_file_name: String, time_file_name: String, R: Int, top_k: Int, Classificator: Int, shapelet_file_name: String, test_file_name: String, model_file_name: String) = {
-    var a = new FastShapelet(train_file_name, min_len, max_len, step, Num_partitions, seed, tree_file_name, time_file_name, R, top_k, Classificator, shapelet_file_name, test_file_name, model_file_name)
+    var a = new DFST(train_file_name, min_len, max_len, step, Num_partitions, seed, tree_file_name, time_file_name, R, top_k, Classificator, shapelet_file_name, test_file_name, model_file_name)
     a.main(train_file_name, min_len, max_len, step, Num_partitions, seed, tree_file_name, time_file_name, R, top_k, Classificator, shapelet_file_name, test_file_name, model_file_name)
   }
 }

@@ -23,3 +23,4 @@ var a= new DFST(train_file_name, // hdfs route to training file
                 model_file_name) // output file with Random Forest Model
 
 val output = DFST.run() // generates the file f_scala_results. txt with the runtime records and results on the test dataset.
+```

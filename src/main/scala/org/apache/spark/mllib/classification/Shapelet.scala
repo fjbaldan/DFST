@@ -1,6 +1,4 @@
 package org.apache.spark.mllib.classification
-
-//:paste //First line
 /**
   * @author
   * @version 1.0

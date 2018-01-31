@@ -25,7 +25,7 @@ import org.apache.spark.mllib.tree.RandomForest
 
 
 class DFST(train_file_name: String, min_len: Int, max_len: Int, step: Int, Num_partitions: Int, seed: Int,
-           tree_file_name: String, time_file_name: String, R: Int, top_k: Int, Classificator: Int, shapelet_file_name: String, test_file_name: String, model_file_name: String) extends Serializable {
+           tree_file_name: String, time_file_name: String, R: Int, top_k: Int, Classificator: Int, shapelet_file_name: String, test_file_name: String, model_file_name: String, sc: SparkContext) extends Serializable {
 
 
   /** It shows the possible known bugs own class to consider, when they occur.
@@ -1370,11 +1370,7 @@ class DFST(train_file_name: String, min_len: Int, max_len: Int, step: Int, Num_p
 
 
   def main(train_file_name: String, min_len: Int, max_len: Int, step: Int, Num_partitions_in: Int, seed: Int, tree_file_name: String,
-           time_file_name: String, R: Int, top_k: Int, Classificator: Int, shapelet_file_name: String, test_file_name: String, model_file_name: String) {
-
-    val conf = new SparkConf().set("spark.default.parallelism", Num_partitions_in.toString)
-    val sc = new SparkContext(conf)
-    sc.setLogLevel("ERROR")
+           time_file_name: String, R: Int, top_k: Int, Classificator: Int, shapelet_file_name: String, test_file_name: String, model_file_name: String, sc:SparkContext) {
 
     var Num_partitions = Num_partitions_in
 
@@ -1697,8 +1693,8 @@ class DFST(train_file_name: String, min_len: Int, max_len: Int, step: Int, Num_p
 }
 
 object DFST extends Serializable {
-  def run(train_file_name: String, min_len: Int, max_len: Int, step: Int, Num_partitions: Int, seed: Int, tree_file_name: String, time_file_name: String, R: Int, top_k: Int, Classificator: Int, shapelet_file_name: String, test_file_name: String, model_file_name: String) = {
-    var a = new DFST(train_file_name, min_len, max_len, step, Num_partitions, seed, tree_file_name, time_file_name, R, top_k, Classificator, shapelet_file_name, test_file_name, model_file_name)
-    a.main(train_file_name, min_len, max_len, step, Num_partitions, seed, tree_file_name, time_file_name, R, top_k, Classificator, shapelet_file_name, test_file_name, model_file_name)
+  def run(train_file_name: String, min_len: Int, max_len: Int, step: Int, Num_partitions: Int, seed: Int, tree_file_name: String, time_file_name: String, R: Int, top_k: Int, Classificator: Int, shapelet_file_name: String, test_file_name: String, model_file_name: String, sc:SparkContext) = {
+    var a = new DFST(train_file_name, min_len, max_len, step, Num_partitions, seed, tree_file_name, time_file_name, R, top_k, Classificator, shapelet_file_name, test_file_name, model_file_name, sc)
+    a.main(train_file_name, min_len, max_len, step, Num_partitions, seed, tree_file_name, time_file_name, R, top_k, Classificator, shapelet_file_name, test_file_name, model_file_name, sc)
   }
 }

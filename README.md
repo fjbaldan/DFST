@@ -20,7 +20,8 @@ var a= new DFST(train_file_name, // hdfs route to training file
                 Classificator, // 0 for shapelet search only / 1 for DFST
                 shapelet_file_name, //  output file with shapelets selected for shapelet transformation
                 test_file_name, // hdfs route to test file
-                model_file_name) // output file with Random Forest Model
+                model_file_name, // output file with Random Forest Model
+                sc) // input SparkContext
 
 val output = DFST.run() // generates the file f_scala_results. txt with the runtime records and results on the test dataset.
 ```

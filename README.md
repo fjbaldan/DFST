@@ -8,8 +8,8 @@ This algorithm implements DFST (Distributed FastShapelet Transform). DFST is the
 import org.apache.spark.mllib.classification._
 
 var a= new DFST(train_file_name, // hdfs route to training file
-                min_len, //minimum length for FastShapelet search algorithm
-                max_len, //maximum length for FastShapelet search algorithm
+                min_len, // minimum length for FastShapelet search algorithm
+                max_len, // maximum length for FastShapelet search algorithm
                 step, // amount of increase in the length of subsequences processed between iterations
                 Num_partitions, // number of partitions in the training dataset (RDD).
                 seed, // random seed

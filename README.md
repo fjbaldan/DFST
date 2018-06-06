@@ -25,3 +25,25 @@ var a= new DFST(train_file_name, // hdfs route to training file
 
 val output = DFST.run() // generates the file f_scala_results. txt with the runtime records and results on the test dataset.
 ```
+
+# Running from spark-submit
+
+Run DFST from spark-submit:
+
+```shell
+spark-submit --class org.apache.spark.mllib.classification.DFST DFST-1.1.jar \ 
+       trainfile.txt \ 
+       10 \ 
+       100 \ 
+       10 \ 
+       1840 \ 
+       26 \ 
+       treefile.txt \ 
+       timefiletxt \ 
+       1 \ 
+       10 \ 
+       1 \ 
+       outputfile_shapelets.txt \ 
+       testfile.txt \ 
+       outputfile_model.dat 
+```
